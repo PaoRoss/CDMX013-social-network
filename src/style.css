@@ -1,0 +1,63 @@
+:root {
+    --backgroundColor: #f6f6f6;
+    --firstColor: #A1BF5B;
+    --secondColor: #C45824;
+    --thirdColor: #60762E;
+    --black: #000;
+    --white: #fff;
+
+    --fontTitle:;
+    --fontBody:'Poppins', sans-serif;;
+}
+
+*{
+    margin: 0;
+    background-color: var(--backgroundColor);
+    align-items: center;
+    font-family: var(--fontBody);
+}
+div {
+    display:flex;
+    flex-direction: column;
+}
+body{
+    width: 375px;
+    height: 812px;
+    
+}
+h2 {
+    margin-top: 53px;
+    margin-bottom: 21px;
+    text-align: center;
+    font-size: 22px;
+}
+img {
+    width: 237px;
+    height: 210px;
+    margin-bottom: 21px;
+}
+input {
+    width: 325px;
+    height: 51px;
+    border-radius: 22px;
+    font-size: 13px;
+    margin-bottom: 21px;
+    border: none;
+    background-color: var(--white);
+}
+input::placeholder {
+    padding-left: 30px;
+}
+button {
+    width: 325px;
+    height: 62px;
+    background-color: var(--firstColor);
+    color: var(--white);
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 21px;
+}
+p {
+    font-size: 14px;
+}
