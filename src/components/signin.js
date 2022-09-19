@@ -9,6 +9,7 @@ export const signIn = () => {
   const inputPassword = document.createElement('input');
   const askAccount = document.createElement('p');
   const linkRegister = document.createElement('a');
+  linkRegister.setAttribute('href', '/register');
 
   title.textContent = 'Welcome back';
   brandIcon.setAttribute('src', '/images/opcion1.png');

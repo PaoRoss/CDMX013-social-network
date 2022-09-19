@@ -1,7 +1,7 @@
 :root {
     --backgroundColor: #f6f6f6;
     --firstColor: #A1BF5B;
-    --secondColor: #C45824;
+    --secondColor: hsl(20, 69%, 45%);
     --thirdColor: #60762E;
     --black: #000;
     --white: #fff;
@@ -30,6 +30,7 @@ h2 {
     margin-bottom: 21px;
     text-align: center;
     font-size: 22px;
+    color: rgba(0, 0, 0, 0.75);
 }
 img {
     width: 237px;
@@ -37,16 +38,15 @@ img {
     margin-bottom: 21px;
 }
 input {
-    width: 325px;
+    width: 295px;
     height: 51px;
     border-radius: 22px;
     font-size: 13px;
     margin-bottom: 21px;
     border: none;
     background-color: var(--white);
-}
-input::placeholder {
-    padding-left: 30px;
+    outline: none;
+    padding-left: 30px;    
 }
 button {
     width: 325px;
@@ -57,7 +57,18 @@ button {
     border: none;
     border-radius: 20px;
     margin-bottom: 21px;
+    cursor: pointer;
 }
 p {
     font-size: 14px;
+    margin-left: -70px;
+}
+a {
+    font-size: 14px;
+    color: var(--secondColor);
+    outline: none;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: -21px;
+    margin-left: 180px;
 }
