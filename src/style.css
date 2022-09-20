@@ -72,3 +72,59 @@ a {
     margin-top: -21px;
     margin-left: 180px;
 }
+div .upperBanner{
+    flex-direction: row;
+}
+.upperBanner{
+    display: flex;
+    padding: 1%;
+    justify-content: center;
+    margin-top: 2%;
+}
+.growLetters{
+    width: 113px;
+    height: 42px;
+    margin-right: 35%;
+    margin-bottom: 0%;
+}
+.userIcon{
+    width: 39px;
+    height: 39px;
+    margin-left: 2%;
+    margin-bottom: 4%;
+}
+.upperBanner p{
+    margin-left: 50px;
+}
+.postTextBox{
+    height: 84px;
+    margin-top: 5%;
+}
+.postButton{
+    background: var(--firstColor);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    height: 28px;
+    width: 89px;
+    justify-content: flex-end;
+    margin-left: 70%;
+    font-size: 14px;
+}
+.bottomLine{
+    width: 375px;
+    height: 1px;
+    background-color: var(--firstColor);
+    margin-top: 0;   
+}
+.homeIcon{
+    width: 52.9px;
+    height: 45.58px;
+    margin-top: 0;
+    margin-bottom: 0%;
+}
+div .bottomBanner{
+    position: absolute;
+    bottom: 0px;
+    margin: 0px;
+}
