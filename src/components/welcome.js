@@ -1,4 +1,5 @@
-import { onNavigate } from "../main.js";
+import { onNavigate } from '../main.js';
+
 export const welcome = () => {
   const div = document.createElement('div');
   const title = document.createElement('img');
@@ -13,6 +14,9 @@ export const welcome = () => {
 
   buttonRegister.addEventListener('click', () => {
     onNavigate('/register');
+  });
+  buttonSignIn.addEventListener('click', () => {
+    onNavigate('/signin');
   });
 
   div.append(title, about, buttonSignIn, buttonRegister);
