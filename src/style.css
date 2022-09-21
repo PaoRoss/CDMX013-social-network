@@ -1,0 +1,224 @@
+:root {
+    --backgroundColor: #f6f6f6;
+    --firstColor: #A1BF5B;
+    --secondColor: hsl(20, 69%, 45%);
+    --thirdColor: #60762E;
+    --black: #000;
+    --white: #fff;
+
+    --fontTitle:;
+    --fontBody:'Poppins', sans-serif;;
+}
+
+*{
+    margin: 0;
+    background-color: var(--backgroundColor);
+    align-items: center;
+    font-family: var(--fontBody);
+}
+div {
+    display:flex;
+    flex-direction: column;
+}
+body{
+    width: 375px;
+    height: 812px;
+    
+}
+h2 {
+    margin-top: 40px;
+    margin-bottom: 21px;
+    text-align: center;
+    font-size: 22px;
+    color: rgba(0, 0, 0, 0.75);
+    
+}
+h3{
+    color: black;
+    font-size: 13px;
+    font-weight: lighter;
+    max-height: 112px;
+    max-width: 293px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+img {
+    width: 309px;
+    height: 283.87px;
+    margin-bottom: 35px;
+    margin-top: 50px;
+}
+.growRegister {
+    width: 276px;
+    height: 130px;
+    margin-bottom: 2px;
+    margin-top: -25px;
+}
+
+input {
+    width: 295px;
+    height: 51px;
+    border-radius: 22px;
+    font-size: 13px;
+    margin-bottom: 21px;
+    border: none;
+    background-color: var(--white);
+    outline: none;
+    padding-left: 30px;    
+}
+
+.errorInput{
+    color: red;
+    margin-left: 12px;
+
+}
+.brandIcon{
+    width: 290px;
+    height: 260px ;
+    margin-top: 20px;
+    margin-bottom: 35px;
+}
+.buttonSignIn {
+    width: 325px;
+    height: 62px;
+    background-color: var(--firstColor);
+    color: var(--white);
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    cursor: pointer;
+}
+.buttonSignInW {
+    width: 325px;
+    height: 62px;
+    background-color: var(--firstColor);
+    color: var(--white);
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 35px;
+    margin-top: 14px;
+    cursor: pointer;
+}
+.buttonRegister {
+    width: 325px;
+    height: 62px;
+    background-color: var(--firstColor);
+    color: var(--white);
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    cursor: pointer;
+}
+.lineRegister{
+    width: 330px;
+    height: 1px;
+    background-color: var(--firstColor);
+    margin-bottom: 20px;  
+    position: relative; 
+}
+.lineOr{
+    position:absolute;
+    width: 30px;
+    height: 20px;
+    color: #000;
+    margin-top: 527px;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+.buttonRegister2 {
+    width: 325px;
+    height: 62px;
+    background-color: var(--firstColor);
+    color: var(--white);
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 42px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.buttonGoogle {
+    width: 200px;
+    height: 48px;
+    border: none;
+    background-image: url('../images/btn_google_signin_light_normal_web@2x.png') ;
+    cursor: pointer;
+    margin-top: 20px;
+    background-size: cover !important;
+    margin-bottom: 41px;
+}
+p {
+    font-size: 14px;
+    margin-left: -70px;
+}
+a {
+    font-size: 14px;
+    color: var(--thirdColor);
+    outline: none;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: -21px;
+    margin-left: 180px;
+}
+div .upperBanner{
+    flex-direction: row;
+}
+.upperBanner{
+    display: flex;
+    padding: 1%;
+    justify-content: center;
+    margin-top: 2%;
+}
+.growLetters{
+    width: 170px;
+    height: 70px;
+    margin-left: -25px;
+    margin-bottom: 0%;
+    margin-top: 37px;
+}
+.userIcon{
+    width: 39px;
+    height: 39px;
+    margin-left: 2%;
+    margin-bottom: 4%;
+}
+.upperBanner p{
+    margin-left: 50px;
+    margin-top: 40px;
+}
+.postTextBox{
+    height: 84px;
+    margin-top: 5%;
+}
+.postButton{
+    background: var(--firstColor);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    height: 28px;
+    width: 89px;
+    justify-content: flex-end;
+    margin-left: 70%;
+    font-size: 14px;
+}
+.bottomLine{
+    width: 330px;
+    height: 1px;
+    background-color: var(--firstColor);
+    margin-bottom: 20px;   
+}
+.logOut{
+    width: 52.9px;
+    height: 52.9px;
+    margin-top: 0;
+    margin-bottom: 0%;
+}
+div .bottomBanner{
+    position: absolute;
+    bottom: 20px;
+    margin: 0px;
+}
