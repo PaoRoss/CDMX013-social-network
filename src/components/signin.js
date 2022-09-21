@@ -53,3 +53,4 @@ export const LogOn = () => {
   div.append(title, brandIcon, inputEmail, inputPassword, errorInput, buttonSignIn, askAccount, linkRegister);
   return div;
 };
+
