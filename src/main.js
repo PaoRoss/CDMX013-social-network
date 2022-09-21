@@ -1,13 +1,13 @@
 import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
-import { signIn } from './components/signin.js';
+import { LogOn } from './components/signin.js';
 import { wall } from './components/wall.js';
 
 const root = document.getElementById('root');
 const routes = {
   '/': welcome,
   '/register': register,
-  '/signin': signIn,
+  '/signin': LogOn,
   '/wall': wall,
 };
 export const onNavigate = (pathname) => {
