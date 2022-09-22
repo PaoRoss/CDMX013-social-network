@@ -7,23 +7,32 @@ export const LogOn = () => {
   const brandIcon = document.createElement('img');
   const buttonSignIn = document.createElement('button');
   const inputEmail = document.createElement('input');
-  inputEmail.setAttribute('type', 'email');
   const inputPassword = document.createElement('input');
+  const errorInput = document.createElement('p');
+  const authGoogleSeccion = document.createElement('p');
+  const askSeccion = document.createElement('div');
+  const buttonGoogle = document.createElement('button');
   const askAccount = document.createElement('p');
   const linkRegister = document.createElement('a');
-  linkRegister.setAttribute('href', '/register');
-  const errorInput = document.createElement('p');
-  errorInput.classList.add('errorInput');
+ 
 
   title.textContent = 'Welcome back';
   brandIcon.setAttribute('src', '/images/icon.png');
   brandIcon.classList.add('brandIcon');
-  buttonSignIn.textContent = 'Sign In';
-  buttonSignIn.classList.add('buttonSignInW');
+  inputEmail.setAttribute('type', 'email');
   inputEmail.placeholder = 'Enter your email';
   inputPassword.placeholder = 'Enter password';
   inputPassword.setAttribute('type', 'password');
+  errorInput.classList.add('errorInput');
+  buttonSignIn.textContent = 'Sign In';
+  buttonSignIn.classList.add('buttonSignInW');
+  authGoogleSeccion.textContent = ('--- or ---');
+  authGoogleSeccion.classList.add('authGoogleSeccion');
+  buttonGoogle.textContent = ('Sign in whit Google');
+  buttonGoogle.classList.add('buttonGoogle');
+  askSeccion.classList.add('askSeccion');
   askAccount.textContent = 'Don’t have an account ?';
+  linkRegister.setAttribute('href', '/register');
   linkRegister.textContent = 'Register';
 
   buttonSignIn.addEventListener('click', () => {
@@ -49,8 +58,8 @@ export const LogOn = () => {
         });
     }
   });
+  askSeccion.append(askAccount, linkRegister);
 
-  div.append(title, brandIcon, inputEmail, inputPassword, errorInput, buttonSignIn, askAccount, linkRegister);
+  div.append(title, brandIcon, inputEmail, inputPassword, errorInput, buttonSignIn, authGoogleSeccion, buttonGoogle, askSeccion);
   return div;
 };
-

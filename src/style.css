@@ -13,25 +13,26 @@
 *{
     margin: 0;
     background-color: var(--backgroundColor);
-    align-items: center;
     font-family: var(--fontBody);
-}
-div {
-    display:flex;
-    flex-direction: column;
 }
 body{
     width: 375px;
     height: 812px;
-    
 }
+section div {
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    justify-items: center;
+}
+
 h2 {
-    margin-top: 40px;
-    margin-bottom: 21px;
     text-align: center;
     font-size: 22px;
     color: rgba(0, 0, 0, 0.75);
-    
+    grid-column: 1/5;
 }
 h3{
     color: black;
@@ -45,38 +46,56 @@ h3{
 img {
     width: 309px;
     height: 283.87px;
-    margin-bottom: 35px;
-    margin-top: 50px;
+    grid-column: 1/5;
 }
+input {
+    width: 295px;
+    height: 51px;
+    border-radius: 22px;
+    font-size: 13px;
+    border: none;
+    background-color: var(--white);
+    outline: none;
+    padding-left: 30px;
+    grid-column: 1/5;   
+}
+p {
+    font-size: 14px;
+    justify-self:center;
+    grid-column: 1/3;
+    justify-self: center;
+}
+.askSeccion p {
+    justify-self:end;
+}
+a {
+    font-size: 14px;
+    color: var(--thirdColor);
+    outline: none;
+    text-decoration: none;
+    font-weight: bold;
+    grid-column: 3/4;
+}
+.askSeccion {
+    display: grid;
+    grid-column: 1/5;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
 .growRegister {
     width: 276px;
     height: 130px;
     margin-bottom: 2px;
     margin-top: -25px;
 }
-
-input {
-    width: 295px;
-    height: 51px;
-    border-radius: 22px;
-    font-size: 13px;
-    margin-bottom: 21px;
-    border: none;
-    background-color: var(--white);
-    outline: none;
-    padding-left: 30px;    
-}
-
 .errorInput{
     color: red;
-    margin-left: 12px;
-
+    grid-column: 1/5;
 }
 .brandIcon{
     width: 290px;
     height: 260px ;
-    margin-top: 20px;
-    margin-bottom: 35px;
 }
 .buttonSignIn {
     width: 325px;
@@ -86,7 +105,6 @@ input {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 28px;
     cursor: pointer;
 }
 .buttonSignInW {
@@ -97,9 +115,11 @@ input {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 35px;
-    margin-top: 14px;
     cursor: pointer;
+    grid-column: 1/5;
+}
+.authGoogleSeccion {
+    grid-column: 1/5;
 }
 .buttonRegister {
     width: 325px;
@@ -142,29 +162,16 @@ input {
 }
 
 .buttonGoogle {
-    width: 200px;
-    height: 48px;
-    border: none;
-    background-image: url('../images/btn_google_signin_light_normal_web@2x.png') ;
+    width: 325px;
+    height: 62px;
+    font-size: 18px;
     cursor: pointer;
-    margin-top: 20px;
-    background-size: cover !important;
-    margin-bottom: 41px;
+    border-color: hsla(0, 0%, 0%, 0.50);
+    border-radius: 20px;
+    grid-column: 1/5;
+    background-color: var(--white);
 }
-p {
-    font-size: 14px;
-    margin-left: -70px;
-}
-a {
-    font-size: 14px;
-    color: var(--thirdColor);
-    outline: none;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: -21px;
-    margin-left: 180px;
-}
-div .upperBanner{
+.upperBanner{
     flex-direction: row;
 }
 .upperBanner{
