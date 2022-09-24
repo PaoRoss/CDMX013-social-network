@@ -19,7 +19,6 @@ export const verifyWithGoogle = () => signInWithPopup(auth, provider)
     // The signed-in user info.
     const user = result.user;
     // ...
-    onNavigate('/wall');
   })
   .catch((error) => {
     // Handle Errors here.

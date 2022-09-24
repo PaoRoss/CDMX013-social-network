@@ -1,40 +1,43 @@
 import { onNavigate } from '../main.js';
-import { createAccount, verifyWithGoogle } from '../lib/auth.js';
+import { createAccount, verifyWithGoogle, provider } from '../lib/auth.js';
 
 export const register = () => {
   const div = document.createElement('div');
   const title = document.createElement('h2');
   const lettering = document.createElement('img');
-  lettering.classList.add('growRegister');
   const inputEmail = document.createElement('input');
-  inputEmail.setAttribute('type', 'email');
   const inputPassword = document.createElement('input');
-  inputPassword.setAttribute('type', 'password');
   const confirmPassword = document.createElement('input');
-  confirmPassword.setAttribute('type', 'password');
   const buttonRegister = document.createElement('button');
-  buttonRegister.classList.add('buttonRegister2');
   const buttonGoogle = document.createElement('button');
-  buttonGoogle.classList.add('buttonGoogle');
   const errorInput = document.createElement('p');
-  errorInput.classList.add('errorInput');
+  const lineRegister = document.createElement('p');
+  const lineOr = document.createElement('p');
+  const askSection = document.createElement('div');
   const askRegister = document.createElement('p');
   const linkSignin = document.createElement('a');
-  linkSignin.setAttribute('href', '/signin');
-  const lineRegister = document.createElement('div');
-  const lineOr = document.createElement('p');
 
   title.textContent = 'Welcome to';
   lettering.setAttribute('src', '/images/lettering.png');
+  lettering.classList.add('growRegister');
+  inputEmail.setAttribute('type', 'email');
   inputEmail.placeholder = 'Enter your email';
+  inputPassword.setAttribute('type', 'password');
   inputPassword.placeholder = 'Enter password';
+  confirmPassword.setAttribute('type', 'password');
   confirmPassword.placeholder = 'Confirm password';
   buttonRegister.textContent = 'Register';
-  askRegister.textContent = 'Already have an account ?';
-  linkSignin.textContent = 'Sign In';
+  buttonRegister.classList.add('buttonRegister2');
+  buttonGoogle.textContent = ('Register with Google');
+  buttonGoogle.classList.add('buttonGoogle');
+  errorInput.classList.add('errorInput');
   lineRegister.classList.add('lineRegister');
   lineOr.textContent = 'OR';
   lineOr.classList.add('lineOr');
+  askSection.classList.add('askSeccion');
+  askRegister.textContent = 'Already have an account ?';
+  linkSignin.setAttribute('href', '/signin');
+  linkSignin.textContent = 'Sign In';
 
   buttonRegister.addEventListener('click', () => {
     const emailValue = inputEmail.value;
@@ -59,9 +62,13 @@ export const register = () => {
     }
   });
   buttonGoogle.addEventListener('click', () => {
-    verifyWithGoogle();
+    verifyWithGoogle()
+      .then(() => {
+        onNavigate('/wall');
+      });
   });
+  askSection.append(askRegister, linkSignin);
 
-  div.append(title, lettering, inputEmail, inputPassword, confirmPassword, errorInput, buttonRegister, lineRegister, lineOr, buttonGoogle, askRegister, linkSignin);
+  div.append(title, lettering, inputEmail, inputPassword, confirmPassword, errorInput, buttonRegister, lineRegister, lineOr, buttonGoogle, askSection);
   return div;
 };

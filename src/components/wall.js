@@ -1,5 +1,4 @@
 import { endSesion } from '../lib/auth.js';
-import { onNavigate } from '../main.js';
 
 export const wall = () => {
   const div = document.createElement('div');
