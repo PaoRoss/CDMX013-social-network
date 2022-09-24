@@ -5,35 +5,40 @@
     --thirdColor: #60762E;
     --black: #000;
     --white: #fff;
-
-    --fontTitle:;
-    --fontBody:'Poppins', sans-serif;;
+    --fontTitle: ;
+    --fontBody: 'Poppins', sans-serif;
+    ;
 }
 
-*{
+* {
     margin: 0;
     background-color: var(--backgroundColor);
-    align-items: center;
     font-family: var(--fontBody);
 }
-div {
-    display:flex;
-    flex-direction: column;
-}
-body{
+
+body {
     width: 375px;
     height: 812px;
-    
 }
+
+section div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    justify-items: center;
+
+}
+
 h2 {
-    margin-top: 40px;
-    margin-bottom: 21px;
     text-align: center;
     font-size: 22px;
     color: rgba(0, 0, 0, 0.75);
-    
+    grid-column: 1/5;
 }
-h3{
+
+h3 {
     color: black;
     font-size: 13px;
     font-weight: lighter;
@@ -41,18 +46,13 @@ h3{
     max-width: 293px;
     text-align: center;
     margin-bottom: 35px;
+    grid-column: 1/5;
 }
+
 img {
     width: 309px;
     height: 283.87px;
-    margin-bottom: 35px;
-    margin-top: 50px;
-}
-.growRegister {
-    width: 276px;
-    height: 130px;
-    margin-bottom: 2px;
-    margin-top: -25px;
+    grid-column: 1/5;
 }
 
 input {
@@ -60,24 +60,69 @@ input {
     height: 51px;
     border-radius: 22px;
     font-size: 13px;
-    margin-bottom: 21px;
     border: none;
     background-color: var(--white);
     outline: none;
-    padding-left: 30px;    
+    padding-left: 30px;
+    grid-column: 1/5;
 }
 
-.errorInput{
+p {
+    font-size: 14px;
+    justify-self: center;
+    grid-column: 1/3;
+    justify-self: center;
+}
+
+.askSeccion p {
+    justify-self: end;
+}
+
+.askSection p {
+    justify-self: end;
+}
+
+a {
+    font-size: 14px;
+    color: var(--thirdColor);
+    outline: none;
+    text-decoration: none;
+    font-weight: bold;
+    grid-column: 3/4;
+}
+
+.askSeccion {
+    display: grid;
+    grid-column: 1/5;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.askSection {
+    display: grid;
+    grid-column: 1/5;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.growRegister {
+    width: 276px;
+    height: 130px;
+    margin-bottom: 2px;
+    margin-top: -25px;
+
+}
+
+.errorInput {
     color: red;
-    margin-left: 12px;
+    grid-column: 1/5;
+}
 
-}
-.brandIcon{
+.brandIcon {
     width: 290px;
-    height: 260px ;
-    margin-top: 20px;
-    margin-bottom: 35px;
+    height: 260px;
 }
+
 .buttonSignIn {
     width: 325px;
     height: 62px;
@@ -86,9 +131,10 @@ input {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 28px;
     cursor: pointer;
+    grid-column: 1/5;
 }
+
 .buttonSignInW {
     width: 325px;
     height: 62px;
@@ -97,10 +143,14 @@ input {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 35px;
-    margin-top: 14px;
     cursor: pointer;
+    grid-column: 1/5;
 }
+
+.authGoogleSeccion {
+    grid-column: 1/5;
+}
+
 .buttonRegister {
     width: 325px;
     height: 62px;
@@ -111,23 +161,28 @@ input {
     border-radius: 20px;
     margin-bottom: 28px;
     cursor: pointer;
+    grid-column: 1/5;
 }
-.lineRegister{
+
+.lineRegister {
     width: 330px;
     height: 1px;
     background-color: var(--firstColor);
-    margin-bottom: 20px;  
-    position: relative; 
+    margin-bottom: 20px;
+    grid-column: 1/5;
+    grid-row: 8/9;
+    margin-top: 10px;
 }
-.lineOr{
-    position:absolute;
+
+.lineOr {
     width: 30px;
     height: 20px;
-    color: #000;
-    margin-top: 527px;
-    margin-left: 10px;
+    grid-column: 2/4;
+    grid-row: 8/9;
     padding-left: 10px;
+
 }
+
 .buttonRegister2 {
     width: 325px;
     height: 62px;
@@ -136,65 +191,61 @@ input {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 42px;
+    margin-bottom: 20px;
     cursor: pointer;
     margin-top: 10px;
+    grid-column: 1/5;
 }
 
 .buttonGoogle {
-    width: 200px;
-    height: 48px;
-    border: none;
-    background-image: url('../images/btn_google_signin_light_normal_web@2x.png') ;
+    width: 325px;
+    height: 62px;
+    font-size: 18px;
     cursor: pointer;
-    margin-top: 20px;
+    border-color: var(--thirdColor);
+    border-radius: 20px;
+    grid-column: 1/5;
+    background-image: url("../images/btn.png");
     background-size: cover !important;
-    margin-bottom: 41px;
 }
-p {
-    font-size: 14px;
-    margin-left: -70px;
-}
-a {
-    font-size: 14px;
-    color: var(--thirdColor);
-    outline: none;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: -21px;
-    margin-left: 180px;
-}
-div .upperBanner{
+
+.upperBanner {
     flex-direction: row;
 }
-.upperBanner{
+
+.upperBanner {
     display: flex;
     padding: 1%;
     justify-content: center;
     margin-top: 2%;
 }
-.growLetters{
+
+.growLetters {
     width: 170px;
     height: 70px;
     margin-left: -25px;
     margin-bottom: 0%;
     margin-top: 37px;
 }
-.userIcon{
+
+.userIcon {
     width: 39px;
     height: 39px;
     margin-left: 2%;
     margin-bottom: 4%;
 }
-.upperBanner p{
+
+.upperBanner p {
     margin-left: 50px;
     margin-top: 40px;
 }
-.postTextBox{
+
+.postTextBox {
     height: 84px;
     margin-top: 5%;
 }
-.postButton{
+
+.postButton {
     background: var(--firstColor);
     color: var(--white);
     border: none;
@@ -205,19 +256,22 @@ div .upperBanner{
     margin-left: 70%;
     font-size: 14px;
 }
-.bottomLine{
+
+.bottomLine {
     width: 330px;
     height: 1px;
     background-color: var(--firstColor);
-    margin-bottom: 20px;   
+    margin-bottom: 20px;
 }
-.logOut{
+
+.logOut {
     width: 52.9px;
     height: 52.9px;
     margin-top: 0;
     margin-bottom: 0%;
 }
-div .bottomBanner{
+
+div .bottomBanner {
     position: absolute;
     bottom: 20px;
     margin: 0px;
