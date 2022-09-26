@@ -1,3 +1,4 @@
+import { onNavigate } from '../main.js';
 import { endSesion } from '../lib/auth.js';
 
 export const wall = () => {
@@ -34,7 +35,10 @@ export const wall = () => {
   logOut.classList.add('logOut');
 
   logOut.addEventListener('click', () => {
-    endSesion();
+    endSesion()
+      .then(() => {
+        onNavigate('/');
+      });
   });
   upperBanner.append(growLetters, textUserName, userIcon);
   postsSection.append(publishedPost);
