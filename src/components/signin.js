@@ -28,7 +28,7 @@ export const LogOn = () => {
   buttonSignIn.classList.add('buttonSignInW');
   authGoogleSeccion.textContent = ('--- or ---');
   authGoogleSeccion.classList.add('authGoogleSeccion');
-  buttonGoogle.textContent = ('Sign in whit Google');
+  buttonGoogle.textContent = ('Sign in with Google');
   buttonGoogle.classList.add('buttonGoogle');
   askSeccion.classList.add('askSeccion');
   askAccount.textContent = 'Don’t have an account ?';
