@@ -25,6 +25,7 @@ export const LogOn = () => {
   inputPassword.setAttribute('type', 'password');
   errorInput.classList.add('errorInput');
   buttonSignIn.textContent = 'Sign In';
+
   buttonSignIn.classList.add('buttonSignInWithEmailAndPassword');
   lineSignIn.classList.add('lineSignIn');
   orSignIn.textContent = 'OR';
