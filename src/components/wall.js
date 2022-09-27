@@ -1,5 +1,7 @@
-import { endSesion, auth } from '../lib/auth.js';
+import { endSesion, auth, } from '../lib/auth.js';
 import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { onNavigate } from '../main.js';
+
 
 export const wall = () => {
   const div = document.createElement('div');
@@ -52,7 +54,10 @@ export const wall = () => {
   });
 
   logOut.addEventListener('click', () => {
-    endSesion();
+    endSesion()
+      .then(() => {
+        onNavigate('/');
+      });
   });
   upperBannerDiv.append(growLetters, textUserName, userIcon);
   makePostDiv.append(postTextBox, buttonCreatePost);

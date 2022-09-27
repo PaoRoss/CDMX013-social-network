@@ -4,6 +4,7 @@ import { LogOn } from './components/signin.js';
 import { wall } from './components/wall.js';
 import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
+
 const root = document.getElementById('root');
 const routes = {
   '/': welcome,
@@ -38,3 +39,4 @@ onAuthStateChanged(getAuth(), (user) =>{
     onNavigate('/');
   }
 });
+

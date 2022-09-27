@@ -8,6 +8,7 @@ export const welcome = () => {
   const about = document.createElement('h3');
 
   title.setAttribute('src', '/images/icon.png');
+  title.classList.add('imageTitle');
   buttonSignIn.classList.add('buttonSignIn');
   buttonSignIn.textContent = 'Sign In';
   buttonRegister.textContent = 'Register';
