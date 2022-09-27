@@ -1,5 +1,7 @@
+import { endSesion, auth, } from '../lib/auth.js';
+import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { endSesion } from '../lib/auth.js';
+
 
 export const wall = () => {
   const div = document.createElement('div');
@@ -18,7 +20,7 @@ export const wall = () => {
   const logOut = document.createElement('img');
 
   growLetters.setAttribute('src', '/images/lettering.png');
-  textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
+  //textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
   userIcon.setAttribute('src', '/images/userIcon.png');
   postTextBox.placeholder = 'What are you thinking?';
   buttonCreatePost.textContent = 'Post';
@@ -39,6 +41,17 @@ export const wall = () => {
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
   logOut.classList.add('logOut');
+  
+  const user = auth.currentUser;
+  console.log(user);
+  onAuthStateChanged(getAuth(), (user) => {
+    if (user) {
+      console.log(user.email);
+      textUserName.textContent = user.email;
+    }else{
+      console.log('No hay usuarios activos');
+    }
+  });
 
   logOut.addEventListener('click', () => {
     endSesion()
