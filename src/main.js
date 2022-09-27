@@ -2,6 +2,7 @@ import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
 import { LogOn } from './components/signin.js';
 import { wall } from './components/wall.js';
+import { getUserState } from './lib/auth.js';
 
 const root = document.getElementById('root');
 const routes = {
@@ -29,3 +30,4 @@ window.onpopstate = () => {
 };
 
 root.appendChild(component());
+getUserState();
