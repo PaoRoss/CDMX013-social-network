@@ -7,7 +7,7 @@ export const register = () => {
   const lettering = document.createElement('img');
   const inputEmail = document.createElement('input');
   const inputPassword = document.createElement('input');
-  const confirmPassword = document.createElement('input');
+  const inputUserName = document.createElement('input');
   const buttonRegister = document.createElement('button');
   const buttonGoogle = document.createElement('button');
   const errorInput = document.createElement('p');
@@ -24,8 +24,7 @@ export const register = () => {
   inputEmail.placeholder = 'Enter your email';
   inputPassword.setAttribute('type', 'password');
   inputPassword.placeholder = 'Enter password';
-  confirmPassword.setAttribute('type', 'password');
-  confirmPassword.placeholder = 'Confirm password';
+  inputUserName.placeholder = 'Enter a Username';
   buttonRegister.textContent = 'Register';
   buttonRegister.classList.add('buttonRegister2');
   buttonGoogle.textContent = ('Register with Google');
@@ -40,14 +39,17 @@ export const register = () => {
   linkSignin.textContent = 'Sign In';
 
   buttonRegister.addEventListener('click', () => {
+    const userNameValue = inputUserName.value;
     const emailValue = inputEmail.value;
     const passwordValue = inputPassword.value;
-    if (emailValue === '' || passwordValue === '') {
+    if (emailValue === '' || passwordValue === '' || userNameValue === '') {
       errorInput.innerHTML = 'Please fill in the required fields';
     } else {
       createAccount(emailValue, passwordValue)
         .then((userCredential) => {
           const user = userCredential.user;
+          user.displayName = userNameValue;
+          console.log(user.displayName);
           onNavigate('/signin');
         })
         .catch((error) => {
@@ -69,6 +71,6 @@ export const register = () => {
   });
   askSection.append(askRegister, linkSignin);
 
-  div.append(title, lettering, inputEmail, inputPassword, confirmPassword, errorInput, buttonRegister, lineRegister, lineOr, buttonGoogle, askSection);
+  div.append(title, lettering, inputUserName, inputEmail, inputPassword, errorInput, buttonRegister, lineRegister, lineOr, buttonGoogle, askSection);
   return div;
 };

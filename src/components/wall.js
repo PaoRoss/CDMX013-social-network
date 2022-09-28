@@ -1,4 +1,4 @@
-import { endSesion, auth, } from '../lib/auth.js';
+import { endSesion, auth } from '../lib/auth.js';
 import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
 
@@ -46,7 +46,7 @@ export const wall = () => {
   console.log(user);
   onAuthStateChanged(getAuth(), (user) => {
     if (user) {
-      console.log(user.email);
+      console.log(user.displayName);
       textUserName.textContent = user.email;
     }else{
       console.log('No hay usuarios activos');
