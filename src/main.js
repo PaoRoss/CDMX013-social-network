@@ -1,8 +1,8 @@
+import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
 import { LogOn } from './components/signin.js';
 import { wall } from './components/wall.js';
-import { getUserState } from './lib/auth.js';
 
 const root = document.getElementById('root');
 const routes = {
@@ -30,4 +30,12 @@ window.onpopstate = () => {
 };
 
 root.appendChild(component());
-getUserState();
+
+onAuthStateChanged(getAuth(), (user) => {
+  if (user) {
+    onNavigate('/wall');
+  }
+  if (user === null) {
+    onNavigate('/');
+  }
+});
