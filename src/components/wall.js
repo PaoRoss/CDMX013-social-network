@@ -48,7 +48,9 @@ export const wall = () => {
     if (user) {
       console.log(user.displayName);
       textUserName.textContent = user.email;
-    }else{
+    }
+    if (user === null) {
+      onNavigate('/');
       console.log('No hay usuarios activos');
     }
   });
