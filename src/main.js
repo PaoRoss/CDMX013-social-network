@@ -35,7 +35,7 @@ onAuthStateChanged(getAuth(), (user) => {
   if (user) {
     onNavigate('/wall');
   }
-  if (user === null) {
+ /* if (user === null) {
     onNavigate('/');
-  }
+  }*/
 });
