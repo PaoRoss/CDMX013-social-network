@@ -1,7 +1,8 @@
 import { endSesion, auth } from '../lib/auth.js';
 import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-
+import { postCollection } from '../lib/firestore.js';
+import { setDoc } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
 
 export const wall = () => {
   const div = document.createElement('div');
@@ -42,6 +43,7 @@ export const wall = () => {
   homeIcon.classList.add('homeIcon');
   logOut.classList.add('logOut');
   
+  //Functions
   const user = auth.currentUser;
   console.log(user);
   onAuthStateChanged(getAuth(), (user) => {
@@ -53,6 +55,14 @@ export const wall = () => {
       onNavigate('/');
       console.log('No hay usuarios activos');
     }
+  });
+
+  // -->Here goes the setDoc function
+
+  //Event Listeners
+
+  buttonCreatePost.addEventListener('click', () => {
+
   });
 
   logOut.addEventListener('click', () => {
