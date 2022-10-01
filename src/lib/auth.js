@@ -8,7 +8,7 @@ import {
   onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 
-import { app } from '../firebase.js';
+import { app } from './firebase.js';
 import { onNavigate } from '../main.js';
 
 export const auth = getAuth(app);
