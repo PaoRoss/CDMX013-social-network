@@ -1,10 +1,10 @@
+import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
-import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-//import { postCollection } from '../lib/firestore.js';
-import { setDoc } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
+import { postCollection, db } from '../lib/firestore.jss';
 
-//HTML elements
+// HTML elements
 export const wall = () => {
   const div = document.createElement('div');
   const upperBannerDiv = document.createElement('div');
@@ -17,7 +17,7 @@ export const wall = () => {
   const postsSectionDiv = document.createElement('div'); // Sección donde se verán las publicaciones
   const publishedPost = document.createElement('div'); // Caja donde estarán las publicaciones aún no tiene estilos
   const userIconPost = document.createElement('img');
-  const text = document.createElement('post');
+  const text = document.createElement('p');
   const heartIcon = document.createElement('img');
   const likeIcon = document.createElement('img');
   const likeCount = document.createElement('p');
@@ -27,7 +27,7 @@ export const wall = () => {
   const logOut = document.createElement('img');
 
   growLetters.setAttribute('src', '/images/lettering.png');
-  //textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
+  // textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
   userIcon.setAttribute('src', '/images/userIcon.png');
   postTextBox.placeholder = 'What are you thinking?';
   buttonCreatePost.textContent = 'Post';
@@ -57,8 +57,8 @@ export const wall = () => {
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
   logOut.classList.add('logOut');
-  
-  //Functions
+
+  // Functions
   const user = auth.currentUser;
   console.log(user);
   onAuthStateChanged(getAuth(), (user) => {
@@ -74,10 +74,12 @@ export const wall = () => {
 
   // -->Here goes the setDoc function
 
-  //Event Listeners
+  // Event Listeners
 
   buttonCreatePost.addEventListener('click', () => {
-
+    const postValue = postTextBox.value;
+    console.log(postValue);
+    postCollection(postValue, user);
   });
 
   logOut.addEventListener('click', () => {

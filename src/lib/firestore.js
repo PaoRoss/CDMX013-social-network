@@ -1,13 +1,24 @@
+import {
+  getFirestore, collection, addDoc,
+} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { app } from './firebase.js';
-import { getFirestore, collection, addDoc, doc, setDoc, Timestamp} from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
 
 export const db = getFirestore(app);
 
-export const postCollection = addDoc(collection(db, "postCollection");
+export const postCollection = async (postValue, user) => {
+  try {
+    const docRef = await addDoc(collection(db, 'postCollection'), {
+      post: postValue,
+      user: user.email,
+    });
+    console.log(docRef);
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
 
-
-setDoc(doc(db, 'postCollection', ''), {
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-  });
+/* setDoc(doc(db, 'postCollection', ''), {
+  name: 'Los Angeles',
+  state: 'CA',
+  country: 'USA',
+}); */
