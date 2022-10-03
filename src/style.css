@@ -286,13 +286,62 @@ a {
 }
 
 .postsSectionDiv{
-
     grid-column: 2/5;
     grid-row: 3/5;
 }
 
 .publishedPost{
-    display: none;
+    /*display: none;*/
+    background-color: var(--backgroundColor);
+    width: 343px;
+    height: 194px;
+    border-radius: 25px;
+    border-color: var(--thirdColor);
+    border-style: solid;
+    border-width: 3px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.publishedPost > .userIcon {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-self: end;
+}
+
+.publishedPost > .userName{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    align-self: center;
+}
+
+.publishedText{
+    grid-column: 1/5;
+    grid-row: 2/3;
+    padding: 5%;
+}
+
+.heartIcon{
+    width: 30px;
+    height: 30px;
+    background: none;
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.likeIcon{
+    width: 30px;
+    height: 30px;
+    background: none;
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+
+.publishedPost > p {
+    grid-column: 3/4;
+    grid-row: 3/4;
+    align-self: center;
 }
 
 .bottomBannerDiv {

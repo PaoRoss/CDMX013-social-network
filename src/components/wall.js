@@ -1,9 +1,10 @@
 import { endSesion, auth } from '../lib/auth.js';
 import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { postCollection } from '../lib/firestore.js';
-import { setDoc } from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
+//import { postCollection } from '../lib/firestore.js';
+import { setDoc } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
 
+//HTML elements
 export const wall = () => {
   const div = document.createElement('div');
   const upperBannerDiv = document.createElement('div');
@@ -15,6 +16,11 @@ export const wall = () => {
   const buttonCreatePost = document.createElement('button');
   const postsSectionDiv = document.createElement('div'); // Sección donde se verán las publicaciones
   const publishedPost = document.createElement('div'); // Caja donde estarán las publicaciones aún no tiene estilos
+  const userIconPost = document.createElement('img');
+  const text = document.createElement('post');
+  const heartIcon = document.createElement('img');
+  const likeIcon = document.createElement('img');
+  const likeCount = document.createElement('p');
   const bottomBannerDiv = document.createElement('div');
   const bottomLine = document.createElement('div');
   const homeIcon = document.createElement('img');
@@ -25,6 +31,11 @@ export const wall = () => {
   userIcon.setAttribute('src', '/images/userIcon.png');
   postTextBox.placeholder = 'What are you thinking?';
   buttonCreatePost.textContent = 'Post';
+  userIconPost.setAttribute('src', '/images/userIcon.png');
+  text.textContent = 'Remember to water your plants less on winter!';
+  heartIcon.setAttribute('src', '/images/heartIcon.png');
+  likeIcon.setAttribute('src', '/images/likeIcon.png');
+  likeCount.textContent = '+ 2 likes';
   homeIcon.setAttribute('src', 'images/homeIcon.png');
   logOut.setAttribute('src', '/images/log-out.png');
 
@@ -38,6 +49,10 @@ export const wall = () => {
   publishedPost.classList.add('publishedPost');
   buttonCreatePost.classList.add('postButton');
   postsSectionDiv.classList.add('postsSectionDiv');
+  userIconPost.classList.add('userIcon');
+  text.classList.add('publishedText');
+  heartIcon.classList.add('heartIcon');
+  likeIcon.classList.add('likeIcon');
   bottomBannerDiv.classList.add('bottomBannerDiv');
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
@@ -73,6 +88,7 @@ export const wall = () => {
   });
   upperBannerDiv.append(growLetters, textUserName, userIcon);
   makePostDiv.append(postTextBox, buttonCreatePost);
+  publishedPost.append(userIconPost, textUserName, text, heartIcon, likeIcon, likeCount);
   postsSectionDiv.append(publishedPost);
   bottomBannerDiv.append(bottomLine, logOut);
 
