@@ -2,7 +2,7 @@ import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { postCollection, db } from '../lib/firestore.jss';
+import { postCollection, db } from '../lib/firestore.js';
 
 // HTML elements
 export const wall = () => {
@@ -46,13 +46,13 @@ export const wall = () => {
   userIcon.classList.add('userIcon');
   postTextBox.classList.add('postTextBox');
   makePostDiv.classList.add('makePostDiv');
-  publishedPost.classList.add('publishedPost');
+  publishedPost.classList.add('publishedPost');//
   buttonCreatePost.classList.add('postButton');
   postsSectionDiv.classList.add('postsSectionDiv');
-  userIconPost.classList.add('userIcon');
-  text.classList.add('publishedText');
-  heartIcon.classList.add('heartIcon');
-  likeIcon.classList.add('likeIcon');
+  userIconPost.classList.add('userIcon');//
+  text.classList.add('publishedText'); //
+  heartIcon.classList.add('heartIcon'); //
+  likeIcon.classList.add('likeIcon');//
   bottomBannerDiv.classList.add('bottomBannerDiv');
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
@@ -71,6 +71,53 @@ export const wall = () => {
       console.log('No hay usuarios activos');
     }
   });
+  
+  const createCards = (user, texto) =>{
+    const publishedPost = document.createElement('div');
+    publishedPost.classList.add('publishedPost');
+    const userIconPost = document.createElement('img');
+    const userEmailPost = document.createElement('p');
+    const text = document.createElement('p');
+    const heartIcon = document.createElement('img');
+    const likeIcon = document.createElement('img');
+    const likeCount = document.createElement('p');
+
+    userIconPost.setAttribute('src', '/images/userIcon.png');
+    text.textContent = 'Remember to water your plants less on winter!';
+    heartIcon.setAttribute('src', '/images/heartIcon.png');
+    likeIcon.setAttribute('src', '/images/likeIcon.png');
+    
+    userEmailPost.classList.add('userName');
+    postsSectionDiv.classList.add('postsSectionDiv');
+    userIconPost.classList.add('userIcon');
+    text.classList.add('publishedText');
+    heartIcon.classList.add('heartIcon');
+    likeIcon.classList.add('likeIcon');
+    likeCount.classList.add('likeCount');
+
+    userEmailPost.textContent = user;
+    text.textContent = texto;
+    publishedPost.append(userIconPost, userEmailPost, text, heartIcon, likeIcon, likeCount);
+    postsSectionDiv.append(publishedPost);
+};
+
+  let postinfo = [];
+  const getPost = async () => {
+    const querySnapshot = await getDocs(collection(db, 'postCollection'));
+    querySnapshot.forEach((doc) => {
+      ///const postDescription = doc.data();
+      console.log(doc.id, ' => ', doc.data());
+      postinfo.push(doc.data());
+    });
+    console.log(postinfo);
+    //postsSectionDiv.innerHTML = doc.data().post;
+    postinfo.forEach((element) => {
+      //postsSectionDiv.innerHTML+= element.user + element.post;
+      //createCards(element.user, element.post);
+      //postsSectionDiv.append(publishedPost);
+    })
+  };
+  getPost();
 
   // -->Here goes the setDoc function
 
@@ -79,7 +126,9 @@ export const wall = () => {
   buttonCreatePost.addEventListener('click', () => {
     const postValue = postTextBox.value;
     console.log(postValue);
-    postCollection(postValue, user);
+    postCollection(postValue, user).then((doc) =>{
+    console.log(doc);
+  });
   });
 
   logOut.addEventListener('click', () => {
@@ -90,10 +139,13 @@ export const wall = () => {
   });
   upperBannerDiv.append(growLetters, textUserName, userIcon);
   makePostDiv.append(postTextBox, buttonCreatePost);
-  publishedPost.append(userIconPost, textUserName, text, heartIcon, likeIcon, likeCount);
-  postsSectionDiv.append(publishedPost);
+  publishedPost.append(userIconPost, textUserName, text, heartIcon, likeIcon, likeCount); //
+  postsSectionDiv.append(publishedPost); //
   bottomBannerDiv.append(bottomLine, logOut);
 
   div.append(upperBannerDiv, makePostDiv, postsSectionDiv, bottomBannerDiv);
   return div;
 };
+
+
+/*Ponerle clase y estilos a Like count poque hace que pierda la forma el div de las publicaciones*/

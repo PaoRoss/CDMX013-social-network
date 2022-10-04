@@ -217,6 +217,7 @@ a {
     display: grid;
     grid-template-columns: 2% repeat(3, 1fr) 2%;
     grid-template-rows: 12% repeat(3, 1fr);
+    /*grid-template-rows: 200px 500px 1000px;*/
     gap: 16px;
 }
 
@@ -288,6 +289,8 @@ a {
 .postsSectionDiv{
     grid-column: 2/5;
     grid-row: 3/5;
+    overflow-y: scroll;
+    overflow: hidden;
 }
 
 .publishedPost{
@@ -311,7 +314,7 @@ a {
 }
 
 .publishedPost > .userName{
-    grid-column: 2/3;
+    grid-column: 2/4;
     grid-row: 1/2;
     align-self: center;
 }
@@ -338,7 +341,7 @@ a {
     grid-row: 3/4;
 }
 
-.publishedPost > p {
+.likeCount {
     grid-column: 3/4;
     grid-row: 3/4;
     align-self: center;
