@@ -1,5 +1,5 @@
 import {
-  getFirestore, collection, addDoc,
+  getFirestore, collection, addDoc, onSnapshot, doc
 } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { app } from './firebase.js';
 
@@ -11,11 +11,18 @@ export const postCollection = async (postValue, user) => {
       post: postValue,
       user: user.email,
     });
-    console.log(docRef);
+    console.log(docRef.id);
+    let docId= docRef.id;
+    return docId;
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 };
+
+/*export const unsub = onSnapshot(doc(db, "cities", "SF"), (doc) => {
+  console.log("Current data: ", doc.data());
+});*/  
+
 
 /* setDoc(doc(db, 'postCollection', ''), {
   name: 'Los Angeles',
