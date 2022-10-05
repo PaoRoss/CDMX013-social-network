@@ -34,9 +34,8 @@ root.appendChild(component());
 onAuthStateChanged(getAuth(), (user) => {
   if (user) {
     onNavigate('/wall');
-    console.log(user);
   }
-  if (user === null) {
-    console.log(user);
-  }
+ /* if (user === null) {
+    onNavigate('/');
+  }*/
 });
