@@ -2,7 +2,7 @@ import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { postCollection, db } from '../lib/firestore.js';
+import { postCollection, db, onRealTime } from '../lib/firestore.js';
 
 // HTML elements
 export const wall = () => {
@@ -35,7 +35,7 @@ export const wall = () => {
   text.textContent = 'Remember to water your plants less on winter!';
   heartIcon.setAttribute('src', '/images/heartIcon.png');
   likeIcon.setAttribute('src', '/images/likeIcon.png');
-  //likeCount.textContent = '+ 2 likes';
+  likeCount.textContent = '+ 2 likes';
   homeIcon.setAttribute('src', 'images/homeIcon.png');
   logOut.setAttribute('src', '/images/log-out.png');
 
@@ -103,17 +103,18 @@ export const wall = () => {
 
   const postinfo = [];
   const getPost = async () => {
-    const querySnapshot = await getDocs(collection(db, 'postCollection'));
-    querySnapshot.forEach((doc) => {
+    onRealTime((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
       /// const postDescription = doc.data();
-      console.log(doc.id, ' => ', doc.data());
-      postinfo.push(doc.data());
-    });
-    console.log(postinfo);
-    // postsSectionDiv.innerHTML = doc.data().post;
-    postinfo.forEach((element) => {
-      createCards(element.user, element.post);
+        console.log(doc.id, ' => ', doc.data());
+        postinfo.push(doc.data());
+      });
+      console.log(postinfo);
+      // postsSectionDiv.innerHTML = doc.data().post;
+      postinfo.forEach((element) => {
+        createCards(element.user, element.post);
       // postsSectionDiv.append(publishedPost);
+      });
     });
   };
   getPost();
