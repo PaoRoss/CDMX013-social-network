@@ -2,7 +2,7 @@ import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { postCollection, db } from '../lib/firestore.js';
+import { postCollection, onRealTime } from '../lib/firestore.js';
 
 // HTML elements
 export const wall = () => {
@@ -27,7 +27,6 @@ export const wall = () => {
   const logOut = document.createElement('img');
 
   growLetters.setAttribute('src', '/images/lettering.png');
-  // textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
   userIcon.setAttribute('src', '/images/userIcon.png');
   postTextBox.placeholder = 'What are you thinking?';
   buttonCreatePost.textContent = 'Post';
@@ -53,6 +52,7 @@ export const wall = () => {
   text.classList.add('publishedText'); //
   heartIcon.classList.add('heartIcon'); //
   likeIcon.classList.add('likeIcon');//
+  likeCount.classList.add('likeCount');//
   bottomBannerDiv.classList.add('bottomBannerDiv');
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
@@ -71,6 +71,7 @@ export const wall = () => {
       console.log('No hay usuarios activos');
     }
   });
+
   
   const createCards = (user, texto) =>{
     const publishedPost = document.createElement('div');
@@ -79,14 +80,16 @@ export const wall = () => {
     const userEmailPost = document.createElement('p');
     const text = document.createElement('p');
     const heartIcon = document.createElement('img');
-    const likeIcon = document.createElement('img');
+    //const likeIcon = document.createElement('img');
     const likeCount = document.createElement('p');
+    const deleteButton = document.createElement('img');
 
     userIconPost.setAttribute('src', '/images/userIcon.png');
     text.textContent = 'Remember to water your plants less on winter!';
     heartIcon.setAttribute('src', '/images/heartIcon.png');
     likeIcon.setAttribute('src', '/images/likeIcon.png');
-    
+    deleteButton.setAttribute('src', '/images/trash.png');
+
     userEmailPost.classList.add('userName');
     postsSectionDiv.classList.add('postsSectionDiv');
     userIconPost.classList.add('userIcon');
@@ -94,30 +97,37 @@ export const wall = () => {
     heartIcon.classList.add('heartIcon');
     likeIcon.classList.add('likeIcon');
     likeCount.classList.add('likeCount');
+    deleteButton.classList.add('deleteButton');
 
     userEmailPost.textContent = user;
     text.textContent = texto;
-    publishedPost.append(userIconPost, userEmailPost, text, heartIcon, likeIcon, likeCount);
+
+    deleteButton.addEventListener('click', () => {
+      console.log('¿dónde estás Pao?');
+    });
+
+    publishedPost.append(userIconPost, userEmailPost, text, heartIcon, likeIcon, deleteButton, likeCount);
     postsSectionDiv.append(publishedPost);
 };
 
-  let postinfo = [];
-  const getPost = async () => {
-    const querySnapshot = await getDocs(collection(db, 'postCollection'));
-    querySnapshot.forEach((doc) => {
-      ///const postDescription = doc.data();
-      console.log(doc.id, ' => ', doc.data());
-      postinfo.push(doc.data());
+
+  const getPosts = async () => {
+    onRealTime((querySnapshot) => {
+      let postinfo = [];
+      postsSectionDiv.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+      /// const postDescription = doc.data();
+        console.log(doc.id, ' => ', doc.data());
+        postinfo.push(doc.data());
+        /*deleteButton.setAttribute('data-id', `${doc.id}`);*/
+      });
+      console.log(postinfo);
+      postinfo.forEach((element) => {
+        createCards(element.user, element.post);
+      });
     });
-    console.log(postinfo);
-    //postsSectionDiv.innerHTML = doc.data().post;
-    postinfo.forEach((element) => {
-      //postsSectionDiv.innerHTML+= element.user + element.post;
-      //createCards(element.user, element.post);
-      //postsSectionDiv.append(publishedPost);
-    })
   };
-  getPost();
+  getPosts();
 
   // -->Here goes the setDoc function
 
@@ -126,7 +136,7 @@ export const wall = () => {
   buttonCreatePost.addEventListener('click', () => {
     const postValue = postTextBox.value;
     console.log(postValue);
-    postCollection(postValue, user).then((doc) =>{
+    postCollection(postValue, user).then((doc) => {
     console.log(doc);
   });
   });
@@ -139,13 +149,8 @@ export const wall = () => {
   });
   upperBannerDiv.append(growLetters, textUserName, userIcon);
   makePostDiv.append(postTextBox, buttonCreatePost);
-  publishedPost.append(userIconPost, textUserName, text, heartIcon, likeIcon, likeCount); //
-  postsSectionDiv.append(publishedPost); //
   bottomBannerDiv.append(bottomLine, logOut);
 
   div.append(upperBannerDiv, makePostDiv, postsSectionDiv, bottomBannerDiv);
   return div;
 };
-
-
-/*Ponerle clase y estilos a Like count poque hace que pierda la forma el div de las publicaciones*/
