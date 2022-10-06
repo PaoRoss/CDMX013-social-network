@@ -2,7 +2,7 @@ import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/
 import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
 import { onNavigate } from '../main.js';
-import { postCollection, onRealTime } from '../lib/firestore.js';
+import { postCollection, onRealTime, deleteDocPost } from '../lib/firestore.js';
 
 // HTML elements
 export const wall = () => {
@@ -72,15 +72,14 @@ export const wall = () => {
     }
   });
 
-  
-  const createCards = (user, texto) =>{
+  const createCards = (user, texto) => {
     const publishedPost = document.createElement('div');
     publishedPost.classList.add('publishedPost');
     const userIconPost = document.createElement('img');
     const userEmailPost = document.createElement('p');
     const text = document.createElement('p');
     const heartIcon = document.createElement('img');
-    //const likeIcon = document.createElement('img');
+    // const likeIcon = document.createElement('img');
     const likeCount = document.createElement('p');
     const deleteButton = document.createElement('img');
 
@@ -108,23 +107,41 @@ export const wall = () => {
 
     publishedPost.append(userIconPost, userEmailPost, text, heartIcon, likeIcon, deleteButton, likeCount);
     postsSectionDiv.append(publishedPost);
-};
-
+  };
 
   const getPosts = async () => {
     onRealTime((querySnapshot) => {
-      let postinfo = [];
+      const postinfo = [];
       postsSectionDiv.innerHTML = '';
       querySnapshot.forEach((doc) => {
       /// const postDescription = doc.data();
-        console.log(doc.id, ' => ', doc.data());
+        // console.log(doc.id, ' => ', doc.data());
         postinfo.push(doc.data());
-        /*deleteButton.setAttribute('data-id', `${doc.id}`);*/
+        const html = `<div class='publishedPost'>
+                    <img class='userIcon' src='/images/userIcon.png'>
+                    <p class='userName'>${doc.data().user}</p>
+                    <p class='publishedText'>${doc.data().post}</p>
+                    <img class='heartIcon' src='/images/heartIcon.png'>
+                    <!-- <img class='likeIcon' src='/images/likeIcon.png'>-->
+                    <img class='deleteButton' src='/images/trash.png' data-id='${doc.id}'>
+                    </div>`;
+        postsSectionDiv.innerHTML += html;
       });
+
+      const deletePostButtons = document.querySelectorAll('.deleteButton');
+
+      deletePostButtons.forEach(btn => {
+        btn.addEventListener('click', ({ target: { dataset } }) => {
+          console.log(dataset.id);
+          deleteDocPost(dataset.id);
+        });
+      });
+      
       console.log(postinfo);
-      postinfo.forEach((element) => {
-        createCards(element.user, element.post);
-      });
+      /* postinfo.forEach((element) => {
+        //createCards(element.user, element.post);
+
+    }); */
     });
   };
   getPosts();
@@ -137,8 +154,8 @@ export const wall = () => {
     const postValue = postTextBox.value;
     console.log(postValue);
     postCollection(postValue, user).then((doc) => {
-    console.log(doc);
-  });
+      console.log(doc);
+    });
   });
 
   logOut.addEventListener('click', () => {
