@@ -1,4 +1,4 @@
-import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
+import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
 import { welcome } from './components/welcome.js';
 import { register } from './components/register.js';
 import { LogOn } from './components/signin.js';

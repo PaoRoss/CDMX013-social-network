@@ -1,13 +1,27 @@
+import {
+  getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, limit, doc, deleteDoc
+} from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { app } from './firebase.js';
-import { getFirestore, collection, addDoc, doc, setDoc, Timestamp} from 'https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js';
 
 export const db = getFirestore(app);
 
-export const postCollection = addDoc(collection(db, "postCollection");
+export const postCollection = async (postValue, user) => {
+  try {
+    const docRef = await addDoc(collection(db, 'postCollection'), {
+      post: postValue,
+      user: user.email,
+      time: serverTimestamp(),
+    });
+    console.log(docRef.id);
+    let docId= docRef.id;
+    return docId;
+  } catch (e) {
+    console.error('Error adding document: ', e);
+  }
+};
 
+// export const onRealTime = (data) => onSnapshot(collection(db, 'postCollection'), (data)); -- Versión que no tiene query
+const q = query(collection(db, 'postCollection'), orderBy('time', 'desc'), limit(10));
+export const onRealTime = (callback) => onSnapshot(q, callback);
 
-setDoc(doc(db, 'postCollection', ''), {
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-  });
+export const deleteDocPost = (id) => deleteDoc(doc(db, 'postCollection', id));

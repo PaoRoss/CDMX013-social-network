@@ -1,10 +1,10 @@
+import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js';
+import { getDocs, collection } from 'https://www.gstatic.com/firebasejs/9.10.0/firebase-firestore.js';
 import { endSesion, auth } from '../lib/auth.js';
-import { onAuthStateChanged, getAuth } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-//import { postCollection } from '../lib/firestore.js';
-import { setDoc } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-firestore.js';
+import { postCollection, onRealTime, deleteDocPost } from '../lib/firestore.js';
 
-//HTML elements
+// HTML elements
 export const wall = () => {
   const div = document.createElement('div');
   const upperBannerDiv = document.createElement('div');
@@ -17,7 +17,7 @@ export const wall = () => {
   const postsSectionDiv = document.createElement('div'); // Sección donde se verán las publicaciones
   const publishedPost = document.createElement('div'); // Caja donde estarán las publicaciones aún no tiene estilos
   const userIconPost = document.createElement('img');
-  const text = document.createElement('post');
+  const text = document.createElement('p');
   const heartIcon = document.createElement('img');
   const likeIcon = document.createElement('img');
   const likeCount = document.createElement('p');
@@ -27,7 +27,6 @@ export const wall = () => {
   const logOut = document.createElement('img');
 
   growLetters.setAttribute('src', '/images/lettering.png');
-  //textUserName.textContent = 'PlantLover1'; // Supongo que este campo se va a obtener de la base de datos
   userIcon.setAttribute('src', '/images/userIcon.png');
   postTextBox.placeholder = 'What are you thinking?';
   buttonCreatePost.textContent = 'Post';
@@ -46,19 +45,20 @@ export const wall = () => {
   userIcon.classList.add('userIcon');
   postTextBox.classList.add('postTextBox');
   makePostDiv.classList.add('makePostDiv');
-  publishedPost.classList.add('publishedPost');
+  publishedPost.classList.add('publishedPost');//
   buttonCreatePost.classList.add('postButton');
   postsSectionDiv.classList.add('postsSectionDiv');
-  userIconPost.classList.add('userIcon');
-  text.classList.add('publishedText');
-  heartIcon.classList.add('heartIcon');
-  likeIcon.classList.add('likeIcon');
+  userIconPost.classList.add('userIcon');//
+  text.classList.add('publishedText'); //
+  heartIcon.classList.add('heartIcon'); //
+  likeIcon.classList.add('likeIcon');//
+  likeCount.classList.add('likeCount');//
   bottomBannerDiv.classList.add('bottomBannerDiv');
   bottomLine.classList.add('bottomLine');
   homeIcon.classList.add('homeIcon');
   logOut.classList.add('logOut');
-  
-  //Functions
+
+  // Functions
   const user = auth.currentUser;
   console.log(user);
   onAuthStateChanged(getAuth(), (user) => {
@@ -72,12 +72,90 @@ export const wall = () => {
     }
   });
 
+  const createCards = (user, texto) => {
+    const publishedPost = document.createElement('div');
+    publishedPost.classList.add('publishedPost');
+    const userIconPost = document.createElement('img');
+    const userEmailPost = document.createElement('p');
+    const text = document.createElement('p');
+    const heartIcon = document.createElement('img');
+    // const likeIcon = document.createElement('img');
+    const likeCount = document.createElement('p');
+    const deleteButton = document.createElement('img');
+
+    userIconPost.setAttribute('src', '/images/userIcon.png');
+    text.textContent = 'Remember to water your plants less on winter!';
+    heartIcon.setAttribute('src', '/images/heartIcon.png');
+    likeIcon.setAttribute('src', '/images/likeIcon.png');
+    deleteButton.setAttribute('src', '/images/trash.png');
+
+    userEmailPost.classList.add('userName');
+    postsSectionDiv.classList.add('postsSectionDiv');
+    userIconPost.classList.add('userIcon');
+    text.classList.add('publishedText');
+    heartIcon.classList.add('heartIcon');
+    likeIcon.classList.add('likeIcon');
+    likeCount.classList.add('likeCount');
+    deleteButton.classList.add('deleteButton');
+
+    userEmailPost.textContent = user;
+    text.textContent = texto;
+
+    deleteButton.addEventListener('click', () => {
+      console.log('¿dónde estás Pao?');
+    });
+
+    publishedPost.append(userIconPost, userEmailPost, text, heartIcon, likeIcon, deleteButton, likeCount);
+    postsSectionDiv.append(publishedPost);
+  };
+
+  const getPosts = async () => {
+    onRealTime((querySnapshot) => {
+      const postinfo = [];
+      postsSectionDiv.innerHTML = '';
+      querySnapshot.forEach((doc) => {
+      /// const postDescription = doc.data();
+        // console.log(doc.id, ' => ', doc.data());
+        postinfo.push(doc.data());
+        const html = `<div class='publishedPost'>
+                    <img class='userIcon' src='/images/userIcon.png'>
+                    <p class='userName'>${doc.data().user}</p>
+                    <p class='publishedText'>${doc.data().post}</p>
+                    <img class='heartIcon' src='/images/heartIcon.png'>
+                    <!-- <img class='likeIcon' src='/images/likeIcon.png'>-->
+                    <img class='deleteButton' src='/images/trash.png' data-id='${doc.id}'>
+                    </div>`;
+        postsSectionDiv.innerHTML += html;
+      });
+
+      const deletePostButtons = document.querySelectorAll('.deleteButton');
+
+      deletePostButtons.forEach(btn => {
+        btn.addEventListener('click', ({ target: { dataset } }) => {
+          console.log(dataset.id);
+          deleteDocPost(dataset.id);
+        });
+      });
+      
+      console.log(postinfo);
+      /* postinfo.forEach((element) => {
+        //createCards(element.user, element.post);
+
+    }); */
+    });
+  };
+  getPosts();
+
   // -->Here goes the setDoc function
 
-  //Event Listeners
+  // Event Listeners
 
   buttonCreatePost.addEventListener('click', () => {
-
+    const postValue = postTextBox.value;
+    console.log(postValue);
+    postCollection(postValue, user).then((doc) => {
+      console.log(doc);
+    });
   });
 
   logOut.addEventListener('click', () => {
@@ -88,8 +166,6 @@ export const wall = () => {
   });
   upperBannerDiv.append(growLetters, textUserName, userIcon);
   makePostDiv.append(postTextBox, buttonCreatePost);
-  publishedPost.append(userIconPost, textUserName, text, heartIcon, likeIcon, likeCount);
-  postsSectionDiv.append(publishedPost);
   bottomBannerDiv.append(bottomLine, logOut);
 
   div.append(upperBannerDiv, makePostDiv, postsSectionDiv, bottomBannerDiv);
