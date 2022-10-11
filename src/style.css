@@ -100,8 +100,9 @@ a {
 }
 
 .errorInput {
-    color: #cc1010;
+    color: var(--secondColor);
     grid-column: 1/5;
+    font-weight: 600;
 }
 
 .brandIcon {
@@ -254,7 +255,6 @@ a {
 .makePostForm{
     width: 375px;
     height: 140px;
-    gap: 16px 0px;
     margin-top: 80px;
     position: fixed;
     z-index: 1;
@@ -265,7 +265,16 @@ a {
 
 .postTextBox {
     height: 84px;
-    margin-top: 16px;
+    margin-top: 5px;
+    padding: 25px;
+}
+.postAlert {
+    width: 295px;
+    font-size: 13px;
+    text-align: center;
+    margin: 5px;
+    font-weight: 600;
+    color: var(--secondColor);
 }
 
 .postButton {
