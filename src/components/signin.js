@@ -1,5 +1,6 @@
+import { GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js';
 import { onNavigate } from '../main.js';
-import { signIn } from '../lib/auth.js';
+import { signIn, verifyWithGoogle, redirect } from '../lib/auth.js';
 
 export const LogOn = () => {
   const div = document.createElement('div');
@@ -9,12 +10,12 @@ export const LogOn = () => {
   const inputEmail = document.createElement('input');
   const inputPassword = document.createElement('input');
   const errorInput = document.createElement('p');
-  const authGoogleSeccion = document.createElement('p');
-  const askSeccion = document.createElement('div');
+  const lineSignIn = document.createElement('p');
+  const orSignIn = document.createElement('p');
+  const askSection = document.createElement('div');
   const buttonGoogle = document.createElement('button');
   const askAccount = document.createElement('p');
   const linkRegister = document.createElement('a');
- 
 
   title.textContent = 'Welcome back';
   brandIcon.setAttribute('src', '/images/icon.png');
@@ -25,12 +26,14 @@ export const LogOn = () => {
   inputPassword.setAttribute('type', 'password');
   errorInput.classList.add('errorInput');
   buttonSignIn.textContent = 'Sign In';
-  buttonSignIn.classList.add('buttonSignInW');
-  authGoogleSeccion.textContent = ('--- or ---');
-  authGoogleSeccion.classList.add('authGoogleSeccion');
-  buttonGoogle.textContent = ('Sign in whit Google');
+
+  buttonSignIn.classList.add('buttonSignInWithEmailAndPassword');
+  lineSignIn.classList.add('lineSignIn');
+  orSignIn.textContent = 'OR';
+  orSignIn.classList.add('orSignIn');
+  buttonGoogle.textContent = ('Sign in with Google');
   buttonGoogle.classList.add('buttonGoogle');
-  askSeccion.classList.add('askSeccion');
+  askSection.classList.add('askSeccion');
   askAccount.textContent = 'Don’t have an account ?';
   linkRegister.setAttribute('href', '/register');
   linkRegister.textContent = 'Register';
@@ -58,8 +61,32 @@ export const LogOn = () => {
         });
     }
   });
-  askSeccion.append(askAccount, linkRegister);
+  buttonGoogle.addEventListener('click', () => {
+    verifyWithGoogle();
+    redirect()
+      .then((result) => {
+      // This gives you a Google Access Token. You can use it to access Google APIs.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+      }).catch((error) => {
+      // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+      });
+    /* .then(() => {
+        onNavigate('/wall');
+        console.log('signin')
+      }); */
+  });
+  askSection.append(askAccount, linkRegister);
 
-  div.append(title, brandIcon, inputEmail, inputPassword, errorInput, buttonSignIn, authGoogleSeccion, buttonGoogle, askSeccion);
+  div.append(title, brandIcon, inputEmail, inputPassword, errorInput, buttonSignIn, lineSignIn, orSignIn, buttonGoogle, askSection);
   return div;
 };

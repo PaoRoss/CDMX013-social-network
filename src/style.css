@@ -1,13 +1,12 @@
 :root {
     --backgroundColor: #f6f6f6;
     --firstColor: #A1BF5B;
-    --secondColor: hsl(20, 69%, 45%);
+    --secondColor: #c25824;
     --thirdColor: #60762E;
     --black: #000;
     --white: #fff;
-    --fontTitle: ;
+
     --fontBody: 'Poppins', sans-serif;
-    ;
 }
 
 * {
@@ -17,25 +16,31 @@
 }
 
 body {
-    width: 375px;
-    height: 812px;
+    width: 100%;
+    height: 100%;
+    margin: 0 0 16px ;
 }
 
 section div {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px 16px;
-    margin-left: 16px;
-    margin-right: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     justify-items: center;
-
+    grid-column: 1/5;
 }
-
+img {
+    grid-column: 1/5;
+}
+.imageTitle {
+    margin-top: 66px;
+}
 h2 {
+    margin-top: 25px;
     text-align: center;
     font-size: 22px;
     color: rgba(0, 0, 0, 0.75);
     grid-column: 1/5;
+    justify-items: baseline;
 }
 
 h3 {
@@ -45,16 +50,9 @@ h3 {
     max-height: 112px;
     max-width: 293px;
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 16px;
     grid-column: 1/5;
 }
-
-img {
-    width: 309px;
-    height: 283.87px;
-    grid-column: 1/5;
-}
-
 input {
     width: 295px;
     height: 51px;
@@ -65,6 +63,7 @@ input {
     outline: none;
     padding-left: 30px;
     grid-column: 1/5;
+    justify-items: center;
 }
 
 p {
@@ -72,10 +71,6 @@ p {
     justify-self: center;
     grid-column: 1/3;
     justify-self: center;
-}
-
-.askSeccion p {
-    justify-self: end;
 }
 
 .askSection p {
@@ -91,13 +86,6 @@ a {
     grid-column: 3/4;
 }
 
-.askSeccion {
-    display: grid;
-    grid-column: 1/5;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-}
-
 .askSection {
     display: grid;
     grid-column: 1/5;
@@ -108,19 +96,18 @@ a {
 .growRegister {
     width: 276px;
     height: 130px;
-    margin-bottom: 2px;
-    margin-top: -25px;
-
+    /*margin-bottom: 20px;*/
 }
 
 .errorInput {
-    color: red;
+    color: #cc1010;
     grid-column: 1/5;
 }
 
 .brandIcon {
     width: 290px;
-    height: 260px;
+    height: 270px;
+    
 }
 
 .buttonSignIn {
@@ -135,9 +122,10 @@ a {
     grid-column: 1/5;
 }
 
-.buttonSignInW {
+.buttonSignInWithEmailAndPassword {
     width: 325px;
     height: 62px;
+    margin-bottom: 16px;
     background-color: var(--firstColor);
     color: var(--white);
     font-size: 18px;
@@ -146,11 +134,12 @@ a {
     cursor: pointer;
     grid-column: 1/5;
 }
-
+/*.buttonSignInWithEmailAndPassword:hover {
+    color: var(--black);
+}*/
 .authGoogleSeccion {
     grid-column: 1/5;
 }
-
 .buttonRegister {
     width: 325px;
     height: 62px;
@@ -159,7 +148,6 @@ a {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 28px;
     cursor: pointer;
     grid-column: 1/5;
 }
@@ -167,20 +155,31 @@ a {
 .lineRegister {
     width: 330px;
     height: 1px;
-    background-color: var(--firstColor);
-    margin-bottom: 20px;
     grid-column: 1/5;
     grid-row: 8/9;
-    margin-top: 10px;
+    background-color: var(--thirdColor);
+    margin: 10px 0 20px 0;
+}
+.lineSignIn {
+    width: 330px;
+    height: 1px;
+    grid-column: 1/5;
+    grid-row: 7/8;
+    background-color: var(--thirdColor);
+    margin: 10px 0 20px 0;
 }
 
 .lineOr {
     width: 30px;
     height: 20px;
-    grid-column: 2/4;
-    grid-row: 8/9;
+    grid-column: 1/5;
     padding-left: 10px;
-
+    grid-row: 8/9;
+}
+.orSignIn {
+    grid-column: 1/5;
+    grid-row: 7/8;
+    padding: 0 10px 0 10px;
 }
 
 .buttonRegister2 {
@@ -191,9 +190,8 @@ a {
     font-size: 18px;
     border: none;
     border-radius: 20px;
-    margin-bottom: 20px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-bottom: 16px;
     grid-column: 1/5;
 }
 
@@ -202,47 +200,72 @@ a {
     height: 62px;
     font-size: 18px;
     cursor: pointer;
-    border-color: var(--thirdColor);
+    border-color: rgba(0, 0, 0, 0.50);
     border-radius: 20px;
     grid-column: 1/5;
     background-image: url("../images/btn.png");
     background-size: cover !important;
 }
-
-.upperBanner {
-    flex-direction: row;
+.buttonGoogle:hover {
+    border-color: var(--black);
 }
 
-.upperBanner {
+/*Styles wall*/
+
+.wall-div{
+    gap: 16px;
     display: flex;
-    padding: 1%;
-    justify-content: center;
-    margin-top: 2%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upperBannerDiv {
+    z-index: 2;
+    position: fixed;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    padding-right: 26px; /*lo puse porque se veía la orilla de los post arriba*/
+    padding-left: 26px; /*lo puse porque se veía la orilla de los post arriba*/
 }
 
 .growLetters {
-    width: 170px;
-    height: 70px;
-    margin-left: -25px;
-    margin-bottom: 0%;
-    margin-top: 37px;
+    width: 150px;
+    height: 75px;
+    margin-left: 11px;
+    margin-top: 10px;
 }
 
 .userIcon {
-    width: 39px;
-    height: 39px;
-    margin-left: 2%;
-    margin-bottom: 4%;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+    margin-top: 20px;
+
 }
 
-.upperBanner p {
-    margin-left: 50px;
-    margin-top: 40px;
+.userName {
+    margin-top: 20px;
+    font-size: 12px;
+    margin-right: -10px;
+}
+
+.makePostForm{
+    width: 375px;
+    height: 140px;
+    gap: 16px 0px;
+    margin-top: 80px;
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .postTextBox {
     height: 84px;
-    margin-top: 5%;
+    margin-top: 16px;
 }
 
 .postButton {
@@ -252,27 +275,203 @@ a {
     border-radius: 10px;
     height: 28px;
     width: 89px;
-    justify-content: flex-end;
-    margin-left: 70%;
+    margin: 0;
     font-size: 14px;
+    margin-left: 220px;
+    cursor: pointer;
+}
+
+.postsSectionDiv{
+    /*grid-column: 2/5;
+    grid-row: 3/5;
+    overflow-y: scroll;
+    overflow: hidden;*/
+    margin-top: 250px;
+    margin-bottom: 70px;
+    grid-column: 2/5;
+    grid-row: 3/5;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.publishedPost{
+    background-color: var(--backgroundColor);
+    width: 343px;
+    height: 194px;
+    border-radius: 25px;
+    border-color: var(--thirdColor);
+    border-style: solid;
+    border-width: 3px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.publishedPost > .userIcon {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    justify-self: end;
+}
+
+.publishedPost > .userName{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    align-self: center;
+}
+
+.publishedText{
+    padding: 10px;
+    width: 250px;
+    height: 50px;
+    grid-column: 1/5;
+    grid-row: 2/3;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.heartButton{
+    background: none;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    cursor: pointer;
+    align-self: auto;
+}
+.heart {
+    background-color: #c25824;
+}
+
+.likeIcon{
+    width: 30px;
+    height: 30px;
+    background: none;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    align-self:baseline;
+    
+}
+
+.likeCount {
+    grid-column: 1/3;
+    grid-row: 3/4;
+    margin-top: 3px;
+}
+
+.deleteButton{
+    width: 24px;
+    height: 27px;
+    background: none;
+    grid-column: 4/5;
+    grid-row: 3/4;
+    cursor: pointer;
+    align-self: auto;
+    padding: 0;
+    margin-top: -1.5px;
+}
+.editButton{
+    margin-top: 2px;
+    width: 20px;
+    height: 20px;
+    background: none;
+    grid-column: 3/4;
+    grid-row: 3/4;
+    cursor: pointer;
+    align-self: auto;
+}
+.bottomBannerDiv {
+    /*position: absolute;
+    bottom: 40px;
+    margin: 0px;
+    grid-column: 1/4;
+    grid-row: 4/5;*/
+    width: 812px;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
 }
 
 .bottomLine {
-    width: 330px;
-    height: 1px;
-    background-color: var(--firstColor);
+    width: 350px;
+    height: 2px;
+    background-color: var(--thirdColor);
+    grid-column: 1/4;
+    grid-row: 1/2;
+    align-self: end;
+    margin-top: -10px;
     margin-bottom: 20px;
 }
 
 .logOut {
     width: 52.9px;
     height: 52.9px;
-    margin-top: 0;
-    margin-bottom: 0%;
+    grid-column: 1/4;
+    grid-row: 1/3;
+    align-self: center;
+    cursor: pointer;
 }
-
-div .bottomBanner {
-    position: absolute;
-    bottom: 20px;
-    margin: 0px;
+.modalBack{
+    background-color: #60762e77;
+    height: 100%;
+    width: 100%;
+    z-index: 3;
+    position: fixed;
+    margin: 0;
+    justify-content: center;
+} 
+.modalBack > div{
+    margin-top: 230px;
+    margin-left: -5px;
+    display: grid;
+    grid-template-columns: 1.5px repeat(2, 170px) 1.5px;
+    gap: 10px 0;
+}
+.editInput{
+    width: 280px;
+    height: 90px;
+    background: var(--white);
+    grid-column: 2/4;
+    grid-row: 2/3;
+    text-align: center;
+    padding: 5px;
+}
+.acceptButton{
+    background: var(--firstColor);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    height: 28px;
+    width: 89px;
+    margin: 0;
+    font-size: 14px;
+    grid-column: 3/4;
+    grid-row: 3/4;
+    justify-self: center;
+    cursor: pointer;
+}
+.messageEdit {
+    grid-column: 2/4;
+    grid-row: 1/2;
+    align-self: end;
+}
+.cancelButton{
+    background: var(--secondColor);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    height: 28px;
+    width: 89px;
+    margin: 0;
+    font-size: 14px;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    justify-self: center;
+    cursor: pointer;
+}
+.messageDelete {
+    grid-column: 2/4;
+    grid-row: 1/3;
+    align-self: center;
+    font-size: 20px;
+    padding: 16px;
+    text-align: center;
 }
