@@ -116,10 +116,11 @@ export const wall = () => {
                     <img class='userIcon' src='/images/userIcon.png'>
                     <p class='userName'>${doc.data().user}</p>
                     <p class='publishedText'>${doc.data().post}</p>
-                    <img class='heartButton' src='/images/favorite.svg' data-id='${doc.id}'>
+                    <img class='heartButton' src='${doc.data().likes.includes(user.uid) ? '/images/likeIcon.png' : '/images/favorite.svg '}' data-id='${doc.id}'>
                     <p class='likeCount'>${doc.data().likes.length} Likes</p>
-                    <img class='deleteButton' src='/images/delete1.svg' data-id='${doc.id}'>
-                    <img class='editButton' src='/images/edit.png' data-id='${doc.id}'>
+                    <img class='deleteButton ${doc.data().userID !== user.uid ? 'deleteInactive' : ''}'
+                    ' src='/images/delete1.svg' data-id='${doc.id}'>
+                    <img class='editButton ${doc.data().userID !== user.uid ? 'editInactive' : ''}' src='/images/edit.png' data-id='${doc.id}'>
                     </div>`;
       postsSectionDiv.innerHTML += html;
     });
@@ -169,12 +170,12 @@ export const wall = () => {
           if (doc.data().likes.includes(user.uid)) {
             removeLikes(e.target.dataset.id, user.uid);
           } else {
-            // console.log(likeButtons);
-            // likeButtons.classList.toggle('heart');
-            // console.log(likeButtons);
             addLikes(e.target.dataset.id, user.uid);
             likeCount.textContent = doc.data().likes;
             console.log(likeCount);
+            // console.log(likeButtons);
+            btn.classList.toggle('heart');
+            // console.log(likeButtons);
           }
         });
       });
