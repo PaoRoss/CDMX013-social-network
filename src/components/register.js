@@ -1,6 +1,7 @@
 import { onNavigate } from '../main.js';
 import { createAccount, redirect, verifyWithGoogle } from '../lib/auth.js';
 
+
 export const register = () => {
   const div = document.createElement('div');
   const title = document.createElement('h2');
