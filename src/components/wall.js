@@ -173,9 +173,6 @@ export const wall = () => {
             addLikes(e.target.dataset.id, user.uid);
             likeCount.textContent = doc.data().likes;
             console.log(likeCount);
-            // console.log(likeButtons);
-            btn.classList.toggle('heart');
-            // console.log(likeButtons);
           }
         });
       });

@@ -80,10 +80,6 @@ export const LogOn = () => {
         const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
       });
-    /* .then(() => {
-        onNavigate('/wall');
-        console.log('signin')
-      }); */
   });
   askSection.append(askAccount, linkRegister);
 
